@@ -19,8 +19,6 @@ class GameScene: SKScene {
         anvil = self.childNode(withName: "anvil") as? SKSpriteNode
         ingot = self.childNode(withName: "ingot") as? SKSpriteNode
         counterLabel = self.childNode(withName: "counterLabel") as? SKLabelNode
-        
-        counterLabel?.fontSize = 80
     }
     
 
