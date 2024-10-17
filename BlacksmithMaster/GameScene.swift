@@ -9,8 +9,12 @@ import SpriteKit
 import GameplayKit
 
 class GameScene: SKScene {
+    var anvil: SKSpriteNode?
+    var ingot: SKSpriteNode?
+    
     override func didMove(to view: SKView) {
-        
+        anvil = self.childNode(withName: "anvil") as? SKSpriteNode
+        ingot = self.childNode(withName: "ingot") as? SKSpriteNode
     }
     
 
