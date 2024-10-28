@@ -21,6 +21,8 @@ class GameScene: SKScene {
         ingot = self.childNode(withName: "ingot") as? SKSpriteNode
         miningButton = self.childNode(withName: "miningButton") as? SKSpriteNode
         counterLabel = self.childNode(withName: "counterLabel") as? SKLabelNode
+        
+        counterLabel?.text = String(counterText)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -28,9 +30,11 @@ class GameScene: SKScene {
             let location = touch.location(in: self)
             let touchedNode = self.nodes(at: location)
             if touchedNode.first?.position == miningButton?.position {
-                let newScene = SKScene(fileNamed: "MiningScene")
+                let newScene = MiningScene(fileNamed: "MiningScene")
+                
+                newScene?.counterText = counterText
                 newScene?.scaleMode = .aspectFill
-                scene?.view?.presentScene(newScene!, transition: .crossFade(withDuration: 1))
+                scene?.view?.presentScene(newScene!, transition: .fade(withDuration: 1))
             } else {
                 counterText += 1
                 counterLabel?.text = String(counterText)

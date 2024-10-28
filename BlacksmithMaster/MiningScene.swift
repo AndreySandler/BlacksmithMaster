@@ -8,7 +8,7 @@
 import SpriteKit
 import GameplayKit
 
-class MiningScene: SKScene {
+class MiningScene: SKScene, ObservableObject {
     var counterLabel: SKLabelNode?
     var homeButton: SKSpriteNode?
     
@@ -17,6 +17,8 @@ class MiningScene: SKScene {
     override func didMove(to view: SKView) {
         counterLabel = self.childNode(withName: "counterLabel") as? SKLabelNode
         homeButton = self.childNode(withName: "homeButton") as? SKSpriteNode
+        
+        counterLabel?.text = String(counterText)
     }
     
 
@@ -26,7 +28,9 @@ class MiningScene: SKScene {
             let location = touch.location(in: self)
             let touchedNode = self.nodes(at: location)
             if touchedNode.first?.position == homeButton?.position {
-                let newScene = SKScene(fileNamed: "GameScene")
+                let newScene = GameScene(fileNamed: "GameScene")
+                
+                newScene?.counterText = counterText
                 newScene?.scaleMode = .aspectFill
                 scene?.view?.presentScene(newScene!, transition: .crossFade(withDuration: 1))
             } else {
