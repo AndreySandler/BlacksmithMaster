@@ -1,35 +1,28 @@
 //
-//  GameScene.swift
+//  WerehouseScene.swift
 //  BlacksmithMaster
 //
-//  Created by Andrey Sandler on 03.10.2024.
+//  Created by Andrey Sandler on 28.10.2024.
 //
 
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene {
+class WarehouseScene: SKScene {
     
-    // MARK: - SpriteKit Nodes
-    var anvil: SKSpriteNode?
-    var ingot: SKSpriteNode?
+    // MARK: - Sprite Kit Nodes
+    var homeButton: SKSpriteNode?
     var miningButton: SKSpriteNode?
-    var warehouseButton: SKSpriteNode?
-    var counterLabel: SKLabelNode?
     
-    // MARK: - Public properties
+    // MARK: - Public Properties
     var counterText = 0
     
-    // MARK: - Override functions
     override func didMove(to view: SKView) {
-        anvil = self.childNode(withName: "anvil") as? SKSpriteNode
-        ingot = self.childNode(withName: "ingot") as? SKSpriteNode
+        homeButton = self.childNode(withName: "homeButton") as? SKSpriteNode
         miningButton = self.childNode(withName: "miningButton") as? SKSpriteNode
-        warehouseButton = self.childNode(withName: "warehouseButton") as? SKSpriteNode
-        counterLabel = self.childNode(withName: "counterLabel") as? SKLabelNode
-
-        counterLabel?.text = String(counterText)
     }
+    
+    
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
@@ -42,15 +35,12 @@ class GameScene: SKScene {
                 miningScene?.counterText = counterText
                 miningScene?.scaleMode = .aspectFill
                 scene?.view?.presentScene(miningScene!, transition: .fade(withDuration: 1))
-            } else if touchedNode.first?.position == warehouseButton?.position {
-                let warehouseScene = WarehouseScene(fileNamed: "WarehouseScene")
+            } else if touchedNode.first?.position == homeButton?.position {
+                let homeScene = GameScene(fileNamed: "GameScene")
                 
-                warehouseScene?.counterText = counterText
-                warehouseScene?.scaleMode = .aspectFill
-                scene?.view?.presentScene(warehouseScene!, transition: .fade(withDuration: 1))
-            } else {
-                counterText += 1
-                counterLabel?.text = String(counterText)
+                homeScene?.counterText = counterText
+                homeScene?.scaleMode = .aspectFill
+                scene?.view?.presentScene(homeScene!, transition: .fade(withDuration: 1))
             }
         }
     }
@@ -67,3 +57,4 @@ class GameScene: SKScene {
         
     }
 }
+

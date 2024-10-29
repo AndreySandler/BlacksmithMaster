@@ -8,12 +8,16 @@
 import SpriteKit
 import GameplayKit
 
-class MiningScene: SKScene, ObservableObject {
+class MiningScene: SKScene {
+    
+    // MARK: - Sprite Kit Nodes
     var counterLabel: SKLabelNode?
     var homeButton: SKSpriteNode?
     
+    // MARK: - Public Properties
     var counterText = 0
     
+    // MARK: - Override functions
     override func didMove(to view: SKView) {
         counterLabel = self.childNode(withName: "counterLabel") as? SKLabelNode
         homeButton = self.childNode(withName: "homeButton") as? SKSpriteNode
