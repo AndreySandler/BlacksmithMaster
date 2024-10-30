@@ -28,7 +28,7 @@ class GameScene: SKScene {
         warehouseButton = self.childNode(withName: "warehouseButton") as? SKSpriteNode
         counterLabel = self.childNode(withName: "counterLabel") as? SKLabelNode
         
-        ingot.size = CGSize(width: 128, height: 128)
+        ingot.size = CGSize(width: 300, height: 128)
         ingot.zPosition = 3
         counterLabel?.text = String(counterText)
         ingot.position = CGPoint(x: 0, y: 45)
@@ -57,16 +57,16 @@ class GameScene: SKScene {
                 counterLabel?.text = String(counterText)
                 if counterText >= 10 && counterText <= 29 {
                     ingot.run(SKAction.setTexture(SKTexture(imageNamed: "ingotOne")))
-                    ingot.size = CGSize(width: 128, height: 128)
+                    ingot.size = CGSize(width: 300, height: 128)
                 } else if counterText >= 30 && counterText <= 49 {
                     ingot.run(SKAction.setTexture(SKTexture(imageNamed: "ingotTwo")))
-                    ingot.size = CGSize(width: 128, height: 128)
+                    ingot.size = CGSize(width: 300, height: 128)
                 } else if counterText >= 50 && counterText <= 99 {
                     ingot.run(SKAction.setTexture(SKTexture(imageNamed: "ingotThree")))
-                    ingot.size = CGSize(width: 128, height: 128)
+                    ingot.size = CGSize(width: 300, height: 128)
                 } else if counterText >= 100 {
                     ingot.run(SKAction.setTexture(SKTexture(imageNamed: "sword")))
-                    ingot.size = CGSize(width: 128, height: 128)
+                    ingot.size = CGSize(width: 600, height: 128)
                 }
             }
         }
