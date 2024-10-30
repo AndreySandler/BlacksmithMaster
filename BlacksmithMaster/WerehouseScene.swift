@@ -14,6 +14,9 @@ class WarehouseScene: SKScene {
     var homeButton: SKSpriteNode?
     var miningButton: SKSpriteNode?
     
+    // MARK: - SpriteKit Textures
+    var ingotTexture: SKTexture?
+    
     // MARK: - Public Properties
     var counterText = 0
     
@@ -32,12 +35,14 @@ class WarehouseScene: SKScene {
             if touchedNode.first?.position == miningButton?.position {
                 let miningScene = MiningScene(fileNamed: "MiningScene")
                 
+                miningScene?.ingotTexture = ingotTexture
                 miningScene?.counterText = counterText
                 miningScene?.scaleMode = .aspectFill
                 scene?.view?.presentScene(miningScene!, transition: .fade(withDuration: 1))
             } else if touchedNode.first?.position == homeButton?.position {
                 let homeScene = GameScene(fileNamed: "GameScene")
                 
+                homeScene?.ingot.texture = ingotTexture
                 homeScene?.counterText = counterText
                 homeScene?.scaleMode = .aspectFill
                 scene?.view?.presentScene(homeScene!, transition: .fade(withDuration: 1))

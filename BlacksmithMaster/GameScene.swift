@@ -20,7 +20,6 @@ class GameScene: SKScene {
     var counterText = 0
     let ingot = SKSpriteNode(imageNamed: "ingot")
     
-    
     // MARK: - Override functions
     override func didMove(to view: SKView) {
         anvil = self.childNode(withName: "anvil") as? SKSpriteNode
@@ -28,9 +27,10 @@ class GameScene: SKScene {
         warehouseButton = self.childNode(withName: "warehouseButton") as? SKSpriteNode
         counterLabel = self.childNode(withName: "counterLabel") as? SKLabelNode
         
+        counterLabel?.text = String(counterText)
+        
         ingot.size = CGSize(width: 300, height: 128)
         ingot.zPosition = 3
-        counterLabel?.text = String(counterText)
         ingot.position = CGPoint(x: 0, y: 45)
         self.addChild(ingot)
     }
@@ -43,12 +43,14 @@ class GameScene: SKScene {
             if touchedNode.first?.position == miningButton?.position {
                 let miningScene = MiningScene(fileNamed: "MiningScene")
                 
+                miningScene?.ingotTexture = ingot.texture
                 miningScene?.counterText = counterText
                 miningScene?.scaleMode = .aspectFit
                 scene?.view?.presentScene(miningScene!, transition: .fade(withDuration: 1))
             } else if touchedNode.first?.position == warehouseButton?.position {
                 let warehouseScene = WarehouseScene(fileNamed: "WarehouseScene")
                 
+                warehouseScene?.ingotTexture = ingot.texture
                 warehouseScene?.counterText = counterText
                 warehouseScene?.scaleMode = .aspectFill
                 scene?.view?.presentScene(warehouseScene!, transition: .fade(withDuration: 1))

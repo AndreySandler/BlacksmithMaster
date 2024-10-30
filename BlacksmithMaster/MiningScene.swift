@@ -14,6 +14,9 @@ class MiningScene: SKScene {
     var counterLabel: SKLabelNode?
     var homeButton: SKSpriteNode?
     
+    // MARK: - SpriteKit Textures
+    var ingotTexture: SKTexture?
+    
     // MARK: - Public Properties
     var counterText = 0
     
@@ -32,11 +35,12 @@ class MiningScene: SKScene {
             let location = touch.location(in: self)
             let touchedNode = self.nodes(at: location)
             if touchedNode.first?.position == homeButton?.position {
-                let newScene = GameScene(fileNamed: "GameScene")
+                let homeScene = GameScene(fileNamed: "GameScene")
                 
-                newScene?.counterText = counterText
-                newScene?.scaleMode = .aspectFill
-                scene?.view?.presentScene(newScene!, transition: .crossFade(withDuration: 1))
+                homeScene?.ingot.texture = ingotTexture
+                homeScene?.counterText = counterText
+                homeScene?.scaleMode = .aspectFill
+                scene?.view?.presentScene(homeScene!, transition: .crossFade(withDuration: 1))
             } else {
                 counterText += 1
                 counterLabel?.text = String(counterText)
